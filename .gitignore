@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
+*.npy
+!requirements.txt
+
+# Node / Bun
+node_modules/
+dist/
+build/
+.next/
+out/
+bun.lockb
+package-lock.json
+yarn.lock
+.pnp.*
+
+# OpenCode
+.opencode/
+.opencode.local/
+.opencode-cache/
+service.json
+*.log
+opencode.log
+
+# LM Studio models (keep config, ignore large GGUFs if copied locally)
+*.gguf
+*.gguf.*
+*.onnx
+*.bin
+mmproj-*.gguf
+
+# Voice artifacts - personal & temporary
+jarvis/ashad_voice.npy
+jarvis/*.wav
+jarvis/*.mp3
+*.wav
+*.mp3
+voices/
+piper-voices/
+~/.local/share/piper-voices/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Env / Secrets
+.env
+.env.local
+.env.*.local
+C:\Users\HP\.config\opencode\service.json
+secrets/
+
+# Temp
+tmp/
+temp/
+Temp/
+lm_models.json
