@@ -1,0 +1,8 @@
+faster-whisper==1.1.1
+piper-tts==1.2.0
+sounddevice==0.5.1
+numpy==1.26.4
+openwakeword==0.6.0
+soundfile==0.12.1
+resemblyzer==0.1.1
+librosa==0.10.1
