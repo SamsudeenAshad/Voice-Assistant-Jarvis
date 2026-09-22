@@ -1,0 +1,48 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "lmstudio/bonsai-27b",
+  "providers": {
+    "lmstudio": {
+      "settings": { "baseURL": "http://127.0.0.1:1234/v1" },
+      "models": {
+        "gemma-3-1b": {
+          "modelID": "gemma-3-1b",
+          "name": "Gemma 3 1B IT QAT",
+          "limit": { "context": 32768, "output": 2048 }
+        },
+        "bonsai-27b": {
+          "modelID": "prism-ml/bonsai-27b",
+          "name": "Bonsai 27B",
+          "limit": { "context": 32768, "output": 8192 }
+        },
+        "bonsai-27b-alt": {
+          "modelID": "bonsai-27b",
+          "name": "Bonsai 27B alt",
+          "limit": { "context": 32768, "output": 8192 }
+        }
+      }
+    }
+  },
+  "permissions": [
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "glob", "resource": "*", "effect": "allow" },
+    { "action": "grep", "resource": "*", "effect": "allow" },
+    { "action": "webfetch", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git diff *", "effect": "allow" },
+    { "action": "shell", "resource": "powershell *", "effect": "ask" },
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "edit", "resource": "*", "effect": "ask" }
+  ],
+  "agents": {
+    "build": { "model": "lmstudio/bonsai-27b", "permissions": [{ "action": "shell", "resource": "*", "effect": "ask" }] },
+    "general": { "model": "lmstudio/bonsai-27b" },
+    "title": { "model": "lmstudio/gemma-3-1b" },
+    "summary": { "model": "lmstudio/gemma-3-1b" },
+    "compaction": { "model": "lmstudio/gemma-3-1b" }
+  },
+  "commands": {
+    "volume-up": { "description": "Volume up", "template": "Increase system volume by 10% using powershell: (New-Object -comObject WScript.Shell).SendKeys([char]175) - run it after I approve" },
+    "open-chrome": { "description": "Open Chrome", "template": "Open Chrome browser" }
+  }
+}
