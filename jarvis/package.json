@@ -1,0 +1,7 @@
+{
+  "name": "jarvis-opencode",
+  "type": "module",
+  "dependencies": {
+    "@opencode/sdk": "latest"
+  }
+}
