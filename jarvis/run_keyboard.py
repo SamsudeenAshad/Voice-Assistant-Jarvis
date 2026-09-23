@@ -20,7 +20,12 @@ def chat(model, prompt, max_tokens=120):
 def speak(text):
     print(f"\n[JARVIS]: {text}\n")
     try:
-        ps = f'Add-Type -AssemblyName System.Speech; $s=New-Object System.Speech.Synthesis.SpeechSynthesizer; $s.Rate=1; $s.Speak("{text.replace(chr(34), chr(39))[:400]}");'
+        # Strip emojis/non-latin1 for SAPI
+        safe = text.encode('ascii','ignore').decode('ascii')
+        safe = safe.replace(chr(34), chr(39))[:400]
+        if not safe.strip():
+            safe = "Done"
+        ps = f'Add-Type -AssemblyName System.Speech; $s=New-Object System.Speech.Synthesis.SpeechSynthesizer; $s.Rate=1; $s.Speak("{safe}");'
         subprocess.run(["powershell","-Command", ps], timeout=12)
     except: pass
 
@@ -102,8 +107,8 @@ while True:
         print(f"[BRAIN] Using Gemma 3 1B for chat...")
 
     try:
-        # Add Jarvis personality
-        prompt = f"You are Jarvis, a helpful local voice assistant for Ashad. Be concise, friendly, refer to Ashad by name. User says: {cmd}"
+        # Add Jarvis personality - ask model to avoid emojis for SAPI
+        prompt = f"You are Jarvis, a helpful local voice assistant for Ashad. Be concise, friendly, no emojis, refer to Ashad by name. User says: {cmd}"
         resp = chat(model, prompt, max_tokens=150)
         print(f"[JARVIS via {model}]: {resp}")
         speak(resp)
